@@ -9,9 +9,14 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import axios from "axios";
 
 const AdministracaoRestaurante = () => {
   const [restaurantes, setRestaurantes] = useState<IRestaurante[]>([]);
+
+  useEffect(() => {
+      axios.get('')
+  }, [])
 
   return (
     <TableContainer component={Paper}>
