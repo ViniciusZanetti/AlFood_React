@@ -15,7 +15,7 @@ const AdministracaoRestaurante = () => {
   const [restaurantes, setRestaurantes] = useState<IRestaurante[]>([]);
 
   useEffect(() => {
-      axios.get('')
+      axios.get('http://localhost:8000/api/v2/restaurantes')
   }, [])
 
   return (
