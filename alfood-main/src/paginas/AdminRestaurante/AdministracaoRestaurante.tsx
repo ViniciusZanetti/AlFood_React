@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IRestaurante from "../../interfaces/IRestaurante";
 import {
   Paper,
@@ -15,25 +15,24 @@ const AdministracaoRestaurante = () => {
   const [restaurantes, setRestaurantes] = useState<IRestaurante[]>([]);
 
   useEffect(() => {
-      axios.get('http://localhost:8000/api/v2/restaurantes')
-  }, [])
+    axios.get<IRestaurante[]>("http://localhost:8000/api/v2/restaurantes")
+      .then(resposta => setRestaurantes(resposta.data));
+  }, []);
 
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>
-                <strong>Nome</strong>
-            </TableCell>
+            <TableCell>Nome</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-            <TableRow>
-                <TableCell>
-                    <strong>Nome</strong>
-                </TableCell>
+          {restaurantes.map(restaurante => 
+            <TableRow key={restaurante.id}>
+              <TableCell>{restaurante.nome}</TableCell>;
             </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>
